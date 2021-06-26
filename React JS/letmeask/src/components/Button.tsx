@@ -2,11 +2,13 @@ import { ButtonHTMLAttributes } from "react"; //repassa para a função Button t
 
 import "../styles/button.scss";
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>; //padrão para props do ButtonHTMLAttributes
-
-export function Button(props: ButtonProps) {
-  //repassa todas as propriedades recebidas para o "button" do return
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  //recebe props do ButtonHTMLAttributes e mais uma prop isOutlined como boolean
+  isOutlined?: boolean;
+};
+export function Button({ isOutlined = false, ...props }: ButtonProps) {
+  //repassa todas as propriedades recebidas para o "button" do return. Tudo que não for isOutlined ele pega os props (resto)
   return (
-    <button className="button" {...props} /> //...props distribui todas as propriedades passadas como parâmetro para o button
+    <button className={`button ${isOutlined ? "outlined" : ""}`} {...props} /> //...props distribui todas as propriedades passadas como parâmetro para o button
   );
 }
