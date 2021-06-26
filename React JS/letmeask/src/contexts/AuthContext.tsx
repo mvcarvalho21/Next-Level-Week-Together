@@ -22,7 +22,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
   const [user, setUser] = useState<User>();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => { //fica escutando as mudanças do user
       //se o usuário ja estiver logado não solicita novo login
       if (user) {
         const { displayName, photoURL, uid } = user;
